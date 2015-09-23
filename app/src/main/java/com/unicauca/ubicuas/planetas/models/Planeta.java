@@ -5,11 +5,20 @@ package com.unicauca.ubicuas.planetas.models;
  */
 public class Planeta {
 
+    long id;
     long tamanio;
     String nombre;
     float gravedad;
 
     public Planeta() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getTamanio() {

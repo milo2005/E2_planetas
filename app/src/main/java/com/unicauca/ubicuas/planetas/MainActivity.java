@@ -2,36 +2,38 @@ package com.unicauca.ubicuas.planetas;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.unicauca.ubicuas.planetas.database.PlanetaDao;
+import com.unicauca.ubicuas.planetas.models.Planeta;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    PlanetaDao dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        dao = new PlanetaDao(this);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        List<Planeta> data = dao.getAllPlaneta();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        for(int i=0; i<data.size();i++){
+            Log.i("Planeta", "----------------");
+            Log.i("Planeta","ID:"+data.get(i).getId());
+            Log.i("Planeta","NOMBRE:"+data.get(i).getNombre());
+            Log.i("Planeta","GRAVEDAD:"+data.get(i).getGravedad());
+            Log.i("Planeta","TAMANIO:"+data.get(i).getTamanio());
         }
 
-        return super.onOptionsItemSelected(item);
+
     }
+
+
 }
